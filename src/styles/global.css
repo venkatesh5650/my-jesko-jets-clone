@@ -1,0 +1,327 @@
+/* ========================================
+   JESKO JETS CINEMATIC - GLOBAL STYLES
+   Mobile-First Performance Optimized
+   ======================================== */
+
+:root {
+  /* Typography */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  --font-display: 'Inter', var(--font-primary);
+  
+  /* Colors */
+  --color-bg: #0a0a0a;
+  --color-bg-secondary: #1a1a2e;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-accent: #ff6b35;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --space-2xl: 8rem;
+  
+  /* Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Allow transform-based scrolling */
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  /* Prevent scroll freeze */
+  overscroll-behavior-y: none;
+}
+
+/* ========================================
+   GPU ACCELERATION UTILITIES
+   ======================================== */
+
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* ========================================
+   VIDEO & CANVAS OPTIMIZATIONS
+   ======================================== */
+
+video, canvas {
+  max-width: 100%;
+  display: block;
+  transform: translate3d(0, 0, 0); /* GPU Acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: layout paint; /* Prevent layout reflow */
+}
+
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* ========================================
+   GLOBE VIDEO SECTION
+   ======================================== */
+
+.globe-intro {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+.globe-video,
+.globe-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   HERO SEQUENCE SECTION
+   ======================================== */
+
+.hero-section {
+  width: 100%;
+}
+
+.hero-sequence {
+  width: 100%;
+}
+
+.hero-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  gap: 1rem;
+}
+
+.hero-loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   PLANE MORPH SECTION
+   ======================================== */
+
+.plane-morph-section {
+  width: 100%;
+}
+
+.plane-morph {
+  width: 100%;
+}
+
+.morph-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   SEQUENCE LOADERS
+   ======================================== */
+
+.sequence-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   SCROLL & TRANSITION OPTIMIZATIONS
+   ======================================== */
+
+/* Prevent layout reflow during transitions */
+.layout {
+  contain: layout paint;
+}
+
+.main-content {
+  contain: layout paint;
+}
+
+/* Smooth opacity transitions without layout thrash */
+.cinematic-nav {
+  will-change: opacity;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ========================================
+   MOBILE OPTIMIZATIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* Adjust for fixed navbar */
+  .layout.desktop .main-content {
+    padding-top: 70px;
+  }
+
+  .globe-intro,
+  .hero-sequence,
+  .plane-morph {
+    contain: layout paint;
+  }
+  
+  /* Disable heavy visual effects on mobile */
+  .hero-sequence [style*="filter"] {
+    filter: none !important;
+  }
+  
+  /* Optimize touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-appearance: none; /* Remove default mobile styling */
+  }
+  
+  /* Reduce canvas rendering quality on mobile */
+  canvas {
+    image-rendering: auto;
+  }
+  
+  /* Disable backdrop blur on mobile for performance */
+  .cinematic-nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.95);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .hero-loader-spinner {
+    animation: none;
+  }
+  
+  .gpu-accelerated {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ========================================
+   TEXT STYLES
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ========================================
+   PERFORMANCE: AVOID LAYOUT REFLOW
+   ======================================== */
+
+/* Use transform for position changes instead of top/left */
+.position-fixed {
+  position: fixed;
+  will-change: transform;
+}
+
+/* Contain paint and layout for heavy components */
+.contain-strict {
+  contain: strict;
+}
+
+/* Prevent image/video load from causing layout shift */
+img, video {
+  aspect-ratio: attr(width) / attr(height);
+}
